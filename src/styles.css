@@ -7,9 +7,22 @@ input {
   padding: 1rem;
   width: 80%;
   text-align: center;
+  font-size: 3rem;
 }
 
 .emojiDiv {
   padding: 1rem;
   font-weight: bold;
+  font-size: 2rem;
+}
+
+.emojiItems {
+  display: inline;
+  cursor: pointer;
+  margin: 2rem;
+  font-size: 3rem;
+}
+
+.emojiDisplayName {
+  font-size: 2rem;
 }

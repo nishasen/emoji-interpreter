@@ -1,33 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-var headingText = "iinside out";
-
-export default function App() {
-  const [meaning, setMeaning] = useState("");
-
-  function inputChangeHandler(event) {
-    var userInput = event.target.value;
-    var emojiMeaning = emojiDictionary[userInput];
-    if (emojiMeaning === undefined) {
-      emojiMeaning = "This emoji is not defined in our database";
-    }
-    setMeaning(emojiMeaning);
-  }
-
-  return (
-    <div className="App">
-      <h1>{headingText}</h1>
-
-      <input
-        placeholder="Insert your emoji here"
-        onChange={inputChangeHandler}
-      ></input>
-      <div className="emojiDiv">{meaning}</div>
-    </div>
-  );
-}
-
 const emojiDictionary = {
   "😀": "Grinning Face",
   "😃": "Grinning Face with Big Eyes",
@@ -120,6 +93,83 @@ const emojiDictionary = {
   "😈": "Smiling Face with Horns",
   "👿": "Angry Face with Horns"
 };
+
+var headingText = "iinside out";
+var emojiList = Object.keys(emojiDictionary);
+
+export default function App() {
+  const [meaning, setMeaning] = useState("");
+
+  function inputChangeHandler(event) {
+    var userInput = event.target.value;
+    var emojiMeaning = emojiDictionary[userInput];
+    if (emojiMeaning === undefined) {
+      emojiMeaning = "This emoji is not defined in our database";
+    }
+    setMeaning(emojiMeaning);
+  }
+
+  const [emojiName, setEmojiName] = useState("");
+
+  function emojiHandler(item) {
+    var emojiMean = emojiDictionary[item];
+    setEmojiName(emojiMean);
+  }
+
+  return (
+    <div className="App">
+      <h1>{headingText}</h1>
+
+      <input
+        placeholder="Insert your emoji here"
+        onChange={inputChangeHandler}
+      ></input>
+      <div className="emojiDiv">{meaning}</div>
+      <div className="emojiDisplayName">{emojiName}</div>
+      <ul className="listDiv">
+        {emojiList.map((item) => {
+          return (
+            <li className="emojiItems" onClick={() => emojiHandler(item)}>
+              {item}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+// {shoppingList.map((list, index) =>{
+//   return <li
+//   onClick={() => listClickHandler(list)}
+//   style={{backgroundColor: getBg(index), fontSize: getSize(index)}}
+//   key={index}>{list}</li>;
+// }
+//     )}
+
+// var shoppingList = ["milk", "banana", "oats", "egg"];
+// var color = "grey";
+// var noColor = "white";
+
+// function getBg(index){
+//   if(index % 2 ===0)
+//   {
+//     return color;
+//   }
+//   return noColor;
+// }
+
+// function getSize(index){
+//   if(index % 2===0)
+//   {
+//     return "larger"
+//   }
+//   return "small"
+// }
+
+// function listClickHandler(item){
+//   console.log("Clicked ",item);
+// }
 
 // things to notice
 // class --> className
